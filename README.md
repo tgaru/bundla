@@ -4,7 +4,7 @@
 </h1>
 
 [![Telegram: @tgaru](https://img.shields.io/badge/telegram-@tgaru-blue.svg?style=flat&logo=telegram)](https://t.me/tgaru)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/tgaru/bundla)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/tgaru/bundla)](https://github.com/tgaru/bundla/releases)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/tgaru/bundla)
 [![Maintainability](https://api.codeclimate.com/v1/badges/37e938152b596f02d56d/maintainability)](https://codeclimate.com/github/tgaru/bundla/maintainability)
 [![GitHub](https://img.shields.io/github/license/tgaru/bundla?style=flat)](./LICENSE.md)
