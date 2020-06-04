@@ -1,0 +1,33 @@
+version: "1"
+title: <bundle-title>
+description: <bundle-description>
+repository-url: https://github.com/laravel/laravel.git
+repository-version: <repository-version>
+docker-compose:
+  modules:
+    <docker-compose-module>: <docker-compose-module-version>
+    <...other-docker-compose-modules...>
+composer:
+  install: true
+  expansion: true
+  require-dev:
+    <composer-package-name>: <composer-package-version>
+    <...other-composer-packages...>
+  require:
+    <composer-package-name>: <composer-package-version>
+    <...other-composer-packages...>
+npm:
+  install: false
+  expansion: true
+  devDependencies:
+    <npm-package-name>: <npm-package-version>
+    <...other-npm-packages...>
+  dependencies:
+    <npm-package-name>: <npm-package-version>
+    <...other-npm-packages...>
+app-cmd-before:
+  - <cmp-before-command>
+  <...other-cmp-commands...>
+app-cmd-after:
+  - <cmp-after-command>
+  <...other-cmp-commands...>

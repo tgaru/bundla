@@ -1,0 +1,20 @@
+version: "1"
+print:
+  - "Text output after installation"
+  - "Text from a new line"
+env:
+  docker-compose:
+    <env-parameter-name>: <env-parameter-value>
+    <...other-env-parameters...>
+  laravel:
+    <env-parameter-name>: <env-parameter-value>
+    <...other-env-parameters...>
+service:
+  <service-name>:
+    image: <image-name>
+    <service-parameter-name>: <service-parameter-value>
+    <...other-service-parameters...>
+volume:
+  <volume-name>:
+    <volume-parameter-name>: <volume-parameter-value>
+    <...other-volume-parameters...>
