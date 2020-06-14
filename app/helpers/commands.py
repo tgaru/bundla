@@ -33,7 +33,7 @@ def run_shell_command(input, data):
 
 # Run the command in the container "app"
 def run_app_command(input, data):
-    run_shell_command('docker-compose exec app sh -c "' + input[2].replace('"', '\\"') + '"')
+    run_shell_command(input, 'docker-compose exec app sh -c "' + input[2].replace('"', '\\"') + '"')
 
 # Clear Bundla vendor
 def clear_vendor_command(input, data):
