@@ -29,7 +29,7 @@ def create_command(input, data):
 
 # Run shell command
 def run_shell_command(input, data):
-    os.system(data)
+    os.system(data + ' '.join([''] + input[2:]))
 
 # Run the command in the container "app"
 def run_app_command(input, data):

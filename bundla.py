@@ -65,17 +65,17 @@ command_list = [
         'data': 'docker-compose build'
     }],
     ['restart', {
-        'len': 1,
+        'len': 0,
         'def': commands.run_shell_command,
         'data': 'docker-compose restart'
     }],
     ['stop', {
-        'len': 1,
+        'len': 0,
         'def': commands.run_shell_command,
         'data': 'docker-compose stop'
     }],
     ['start', {
-        'len': 1,
+        'len': 0,
         'def': commands.run_shell_command,
         'data': 'docker-compose start'
     }],
@@ -91,7 +91,7 @@ try:
         command_params = command[1]
 
         if command_name != first_param: continue
-        if command_params['len'] != params_len: continue
+        if command_params['len'] and command_params['len'] != params_len: continue
 
         try: command_data = command_params['data']
         except KeyError: command_data = None
