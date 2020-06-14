@@ -61,11 +61,12 @@ def run(bundle_name_input):
     config_npm = configurator.create_npm_config(bundle_config)
 
     # Save configs
-    install.copy_file(joinpath(bundle_path, 'composer.json'), 'src/composer.json', True)
-    install.copy_file(joinpath(bundle_path, 'package.json'), 'src/package.json', True)
+    install.copy_file(joinpath(bundle_path, 'composer.json'), 'src/composer.json')
+    install.copy_file(joinpath(bundle_path, 'package.json'), 'src/package.json')
     install.save_file('.env', 'x', converter.list2env(configs_docker_compose['docker_compose_env']))
     install.copy_file('.env', '.env.example')
     install.save_file('docker-compose.yml', 'x', converter.dict2yaml(configs_docker_compose['docker_compose_yml']))
+    install.copy_file(joinpath(settings.path_configs, 'default.gitignore'), '.gitignore', False)
     install.save_file('src/.env', 'x', converter.list2env(configs_docker_compose['laravel_env']))
     install.copy_file('src/.env', 'src/.env.example')
     if config_composer: install.save_file('src/composer.json', 'w', json.dumps(config_composer, indent=4))

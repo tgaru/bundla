@@ -39,18 +39,23 @@ def exec_shell_cmd(command, start_text, error_text):
 
 # Generated file (save)
 def save_file(file_path, flag, data):
-    log.info('Generated file [' + file_path + ']')
+    log.info('Generated file: ' + file_path)
 
     if not files.save(file_path, flag, data):
         log.danger('Can not save file.')
         app.exit()
 
 # Generated/Replacing file (copy)
-def copy_file(file_from_path, file_to_path, replace = False):
-    if os.path.isfile(file_from_path):
-        if replace: log.info('Replacing file [' + file_to_path + ']')
-        else: log.info('Generated file [' + file_to_path + ']')
-
+def copy_file(file_from_path, file_to_path, replace = True):
+    print([
+        file_to_path,
+        os.path.isfile(file_from_path),
+        replace,
+        not replace,
+        not os.path.isfile(file_to_path)
+    ])
+    if os.path.isfile(file_from_path) and (replace or not replace and not os.path.isfile(file_to_path)):
+        log.info('Copy file: ' + file_to_path)
         os.system('cp ' + file_from_path + ' ' + file_to_path)
 
 # Launching containers, initial settings, executing commands
