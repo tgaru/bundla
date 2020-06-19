@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-#-----------------------------------------------------------#
-#                Install a specific bundle                  #
-#-----------------------------------------------------------#
+# -----------------------------------------------------------#
+#                 Install a specific bundle                  #
+# -----------------------------------------------------------#
 
-import os, json
-from git import Repo
+import os
+import json
 from os.path import join as joinpath
 from ..services import app, log, files, settings, converter, downloader, configurator
 from ..helpers import install
+
 
 # Command Entry Point
 def run(bundle_name_input):
@@ -26,7 +27,7 @@ def run(bundle_name_input):
             not downloader.git(bundle_github_url, bundle_version_spec, bundle_path) and \
             not os.path.isfile(bundle_yml_path):
         log.danger('Laravel bundle with this name does not exist.')
-        app.exit()
+        app.ex()
 
     # Import bundle config
     bundle_config = converter.yaml2dict(files.load(bundle_yml_path))
@@ -39,21 +40,31 @@ def run(bundle_name_input):
     # Check for files and folders
     if os.path.isfile('.env') or os.path.isfile('.env.example') or os.path.isfile('docker-compose.yml') or os.path.exists('src/'):
         log.warning('Application files and/or folders (.env, .env.example, docker-compose.yml, src/) already exist.')
-        if not log.confirm_input('DELETE THEM AND CONTINUE INSTALLATION?'): app.exit()
+
+        if not log.confirm_input('DELETE THEM AND CONTINUE INSTALLATION?'):
+            app.ex()
 
         # Removing an old bundle
         os.system('docker-compose down >/dev/null 2>&1')
-        if os.path.isfile('.env'): files.delete_file('.env')
-        if os.path.isfile('.env.example'): files.delete_file('.env.example')
-        if os.path.isfile('docker-compose.yml'): files.delete_file('docker-compose.yml')
-        if os.path.exists('src/'): files.delete_folder('src/')
+
+        if os.path.isfile('.env'):
+            files.delete_file('.env')
+
+        if os.path.isfile('.env.example'):
+            files.delete_file('.env.example')
+
+        if os.path.isfile('docker-compose.yml'):
+            files.delete_file('docker-compose.yml')
+
+        if os.path.exists('src/'):
+            files.delete_folder('src/')
 
         log.info('Files and folders deleted successfully!')
 
     # Download Laravel
     if not downloader.git(bundle_config['repository-url'], bundle_config['repository-version'], 'src'):
         log.danger('The repository is not cloned.')
-        app.exit()
+        app.ex()
 
     # Configs Generation
     configs_docker_compose = configurator.create_docker_compose_configs(bundle_config)
@@ -69,8 +80,12 @@ def run(bundle_name_input):
     install.copy_file(joinpath(settings.path_configs, 'default.gitignore'), '.gitignore', False)
     install.save_file('src/.env', 'x', converter.list2env(configs_docker_compose['laravel_env']))
     install.copy_file('src/.env', 'src/.env.example')
-    if config_composer: install.save_file('src/composer.json', 'w', json.dumps(config_composer, indent=4))
-    if config_npm: install.save_file('src/package.json', 'w', json.dumps(config_npm, indent=4))
+
+    if config_composer:
+        install.save_file('src/composer.json', 'w', json.dumps(config_composer, indent=4))
+
+    if config_npm:
+        install.save_file('src/package.json', 'w', json.dumps(config_npm, indent=4))
 
     # First start
     install.first_start(bundle_config)

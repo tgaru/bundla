@@ -1,6 +1,6 @@
 <h1 style="font-weight:normal">
   <img src="extra/logo.svg" alt="Bundla" width=25>
-  &nbsp;Bundla - Laravel in Docker
+  &nbsp;Bundla – Laravel in Docker
 </h1>
 
 [![Telegram: @tgaru](https://img.shields.io/badge/telegram-@tgaru-blue.svg?style=flat&logo=telegram)](https://t.me/tgaru)
@@ -25,6 +25,7 @@ A quick way to create a Laravel project for development!
 - [Commands](#commands)
 - [Project Supported Bundles](#project-supported-bundles)
 - [Project Supported Modules](#project-supported-modules)
+- [Structure of the created projects](#structure-of-the-created-projects)
 - [How to create your Laravel bundle?](#how-to-create-your-laravel-bundle)
 - [How to create your Docker Compose module?](#how-to-create-your-docker-compose-module)
 - [Images Docker](#images-docker)
@@ -39,9 +40,9 @@ Bundla will automatically install the specific version of Laravel, generate the 
 
 The created projects are based on the «Laravel bundles», which consist of Laravel parameters, instructions and «Docker Compose modules».
 
-**Laravel bundle** - a set of parameters, instructions and Docker Compose modules for creating a complete development environment for Laravel and Docker.
+**Laravel bundle** – a set of parameters, instructions and Docker Compose modules for creating a complete development environment for Laravel and Docker.
 
-**Docker Compose module** - a set of parameters for forming a Docker container.
+**Docker Compose module** – a set of parameters for forming a Docker container.
 
 In addition, the Bundle allows you to quickly execute the Docker Compose commands and Shell commands inside the «app» container.
 
@@ -125,6 +126,42 @@ On MacOS, you need to install the dependencies manually before installing Bundla
 | [bundla/m-postgres-12.3](https://github.com/bundla/m-postgres-12.3) | postgres:12.3 |
 | [bundla/m-mysql-8.0](https://github.com/bundla/m-mysql-8.0) | mysql:8.0 |
 | [bundla/m-redis-6.0](https://github.com/bundla/m-redis-6.0) | redis:6.0 |
+
+## Structure of the created projects
+
+```
+project
+├── .env
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+└── src/
+    ├── .env
+    ├── .env.example
+    ├── composer.json
+    ├── package.json
+    └── ...Laravel files and folders...
+```
+
+`.env` – environment variables for Docker Compose
+
+`.env.example` – copy of the `.env` file
+
+`.gitignore` – Git ignored data file (optional)
+
+`docker-compose.yml` – Docker Compose main configuration file
+
+`src/` – folder loaded with Laravel
+
+`src/.env` – environment variables for Laravel
+
+`src/.env.example` – copy of the `src/.env` file
+
+`src/composer.json` – config file Composer
+
+`src/package.json` –  config file NPM
+
+The content of these files varies depending on the bundle.
 
 ## How to create your Laravel bundle?
 1. Run the command `bundla create bundle`.
