@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-#-----------------------------------------------------------#
-#                  Data conversion module                   #
-#-----------------------------------------------------------#
+# -----------------------------------------------------------#
+#                   Data conversion module                   #
+# -----------------------------------------------------------#
 
 import yaml
 
+
 # Convert list to ENV (string).
-def list2env(list):
+def list2env(lst):
     env = ''
 
-    for line in list:
+    for line in lst:
         line_length = len(line)
 
-        if line_length == 2: env += str(line[0]) + '=' + str(line[1])
-        elif line_length == 1: env += str(line[0])
+        if line_length == 2:
+            env += str(line[0]) + '=' + str(line[1])
+        elif line_length == 1:
+            env += str(line[0])
 
         env += '\n'
 
     return env.strip('\n')
+
 
 # Convert ENV(string) to list.
 def env2list(env):
@@ -29,13 +33,15 @@ def env2list(env):
         try:
             data = line.split('=')
             lst.append([data[0], data[1]])
-        except Exception as e:
+        except IndexError:
             lst.append([])
     return lst
+
 
 # Convert dictionary to YAML (string).
 def dict2yaml(dct):
     return yaml.dump(dct, sort_keys=False)
+
 
 # Convert YAML(string) to dictionary.
 def yaml2dict(yml):

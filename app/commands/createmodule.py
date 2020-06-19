@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-#-----------------------------------------------------------#
-#                   Create a new module                     #
-#-----------------------------------------------------------#
+# -----------------------------------------------------------#
+#                    Create a new module                     #
+# -----------------------------------------------------------#
 
 from os.path import join as joinpath
 from ..services import app, log, settings, colors
 from ..helpers import create
+
 
 # Command Entry Point
 def run():
@@ -25,7 +26,7 @@ def run():
 
     if not result_copy:
         log.danger('This module already exists!')
-        app.exit()
+        app.ex()
 
     to_path = joinpath(settings.path_docker_compose_modules, username, project_key)
 

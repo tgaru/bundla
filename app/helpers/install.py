@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-#-----------------------------------------------------------#
-#               Install bundle/module Helper                #
-#-----------------------------------------------------------#
+# -----------------------------------------------------------#
+#                Install bundle/module Helper                #
+# -----------------------------------------------------------#
 
 import os
 from ..services import app, log, files
+
 
 # Bundle config validation check
 def check_config(bundle_config):
@@ -18,13 +19,15 @@ def check_config(bundle_config):
 
     if str(bundle_config['version']) != '1':
         log.danger('Only version 1 of bundle.yml file is supported.')
-        app.exit()
+        app.ex()
+
 
 # Bundle config parameter validation check
 def check_param(bundle_config, param):
-    if not param in bundle_config:
+    if param not in bundle_config:
         log.danger('The [' + param + '] parameter is not set for the Laravel bundle.')
-        app.exit()
+        app.ex()
+
 
 # Run Shell Command
 def exec_shell_cmd(command, start_text, error_text):
@@ -35,7 +38,8 @@ def exec_shell_cmd(command, start_text, error_text):
         if error_text:
             log.danger(error_text)
 
-        app.exit()
+        app.ex()
+
 
 # Generated file (save)
 def save_file(file_path, flag, data):
@@ -43,20 +47,15 @@ def save_file(file_path, flag, data):
 
     if not files.save(file_path, flag, data):
         log.danger('Can not save file.')
-        app.exit()
+        app.ex()
+
 
 # Generated/Replacing file (copy)
-def copy_file(file_from_path, file_to_path, replace = True):
-    print([
-        file_to_path,
-        os.path.isfile(file_from_path),
-        replace,
-        not replace,
-        not os.path.isfile(file_to_path)
-    ])
+def copy_file(file_from_path, file_to_path, replace=True):
     if os.path.isfile(file_from_path) and (replace or not replace and not os.path.isfile(file_to_path)):
         log.info('Copy file: ' + file_to_path)
         os.system('cp ' + file_from_path + ' ' + file_to_path)
+
 
 # Launching containers, initial settings, executing commands
 def first_start(bundle_config):
@@ -109,6 +108,7 @@ def first_start(bundle_config):
             None,
             'Laravel key is not installed.'
         )
+
 
 # Run Shell Command in "app" container
 def exec_in_app_container(bundle_config, bundla_param, start_text, error_text):
