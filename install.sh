@@ -4,7 +4,7 @@
 #                      Installing Bundla                    #
 #-----------------------------------------------------------#
 
-BUNDLA_VERSION_TAG="v1.0.0"
+BUNDLA_VERSION_TAG="v1.0.1"
 
 dependency_init() {
   git_installed="$(command -v git)"
