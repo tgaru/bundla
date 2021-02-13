@@ -90,11 +90,11 @@ On MacOS, you need to install the dependencies manually before installing Bundla
 ## Commands
 | Command | Description |
 | - | - |
-| `bundle i <bundle-key>` | Install Laravel bundle |
-| `bundle create bundle` | Create a new bundle based on a template |
-| `bundle create module` | Create a new module based on a template |
-| `bundle app "<shell-command>"` | Run the command inside the container «app» |
-| `bundle help` | Bundla Command List |
+| `bundla i <bundle-key>` | Install Laravel bundle |
+| `bundla create bundle` | Create a new bundle based on a template |
+| `bundla create module` | Create a new module based on a template |
+| `bundla app "<shell-command>"` | Run the command inside the container «app» |
+| `bundla help` | Bundla Command List |
 | `bundla app` | Analogue \[docker-compose exec app sh\] |
 | `bundla ps` | Analogue \[docker-compose ps\] |
 | `bundla up` | Analogue \[docker-compose up -d\] |
