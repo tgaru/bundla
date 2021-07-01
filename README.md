@@ -11,7 +11,7 @@
 
 A quick way to create a Laravel project for development!
 
-[Bundla](https://bundla.tech) is a console utility for raising the development environment on Laravel + Docker, with the necessary configuration and environment.
+[Bundla](https://bundla.github.io) is a console utility for raising the development environment on Laravel + Docker, with the necessary configuration and environment.
 <p align='center'>
 <img src='extra/demo.svg' width='863' alt='bundla i laravel-7.6-lite'>
 </p>
@@ -34,7 +34,7 @@ A quick way to create a Laravel project for development!
 - [License](#license)
 
 ## How it works?
-[Install the Bundla](https://bundla.tech) console utility. Find the desired bundle and install it with one command.
+[Install the Bundla](https://bundla.github.io) console utility. Find the desired bundle and install it with one command.
 
 Bundla will automatically install the specific version of Laravel, generate the files `docker-compose.yml`,` composer.json`, `package.json`,` .env` for Laravel, `.env` for Docker Compose and launch the containers.
 
